@@ -8,10 +8,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MyFirstUITest {
-
 
     @Test
     void userNameIsCorrectOnOverviewTab() {
@@ -60,11 +60,27 @@ public class MyFirstUITest {
 
 
         // Assert
-        Assertions.assertEquals("https://github.com/andrejs-ps/" + repo, actualUrl);
+        Assertions.assertEquals("https://github.com/" + "andrejs-ps/" + repo, actualUrl);
 
         driver.close();
-
     }
 
+    @Test
+    void repositoryCountIsCorrect() {
 
+        // Arrange
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
+        ChromeOptions options = new ChromeOptions().addArguments("start-fullscreen");
+        WebDriver driver = new ChromeDriver(options);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+
+        // Act
+        driver.get("https://github.com/" + "andrejs-ps/" + "?tab=repositories");
+
+        List<WebElement> repos = driver.findElements(By.xpath("//div[@id='user-repositories-list']//li"));
+
+        // Assert
+        Assertions.assertEquals(6, repos.size());
+        driver.close();
+    }
 }
