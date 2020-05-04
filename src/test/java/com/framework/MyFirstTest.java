@@ -1,9 +1,12 @@
 package com.framework;
 
+import org.junit.jupiter.api.Test;
+
 public class MyFirstTest {
 
 
-    public static void main(String[] args) {
-        System.out.println("We can run this!");
+    @Test
+    void myFirstTest() {
+        System.out.println("Runs!");
     }
 }
