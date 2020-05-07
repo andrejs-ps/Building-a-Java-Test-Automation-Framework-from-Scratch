@@ -8,6 +8,8 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.concurrent.TimeUnit;
 
+import static com.testframework.DriverFactory.getChromeDriver;
+
 public class BaseTestClass {
 
     public static final String BASE_URL = "https://github.com/";
@@ -15,12 +17,10 @@ public class BaseTestClass {
 
     @BeforeAll
     static void setup() {
-        // Create the driver object
-        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver.exe");
-        ChromeOptions options = new ChromeOptions().addArguments("start-fullscreen");
-        driver = new ChromeDriver(options);
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver = getChromeDriver(); // nicely abstracted away
     }
+
+
 
     @AfterAll
     static void cleanUp() {
