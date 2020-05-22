@@ -34,4 +34,38 @@ public class Java11GetHeaderTest {
     }
 
 
+    @Test
+    void contentTypeIsJson() throws IOException, InterruptedException {
+        // Arrange
+        HttpClient httpClient = HttpClient.newBuilder().build();
+
+        HttpRequest get = HttpRequest.newBuilder(URI.create(BASE_URL))
+                .setHeader("User-Agent", "Java 11 Http bot")
+                .build();
+
+        // Act
+        HttpResponse<Void> response = httpClient.send(get, HttpResponse.BodyHandlers.discarding());
+        String contentType = response.headers().firstValue("content-type").get();
+
+        Assertions.assertEquals("application/json; charset=utf-8", contentType);
+
+    }
+
+    @Test
+    void xRateLimitIsPresent() throws IOException, InterruptedException {
+        // Arrange
+        HttpClient httpClient = HttpClient.newBuilder().build();
+
+        HttpRequest get = HttpRequest.newBuilder(URI.create(BASE_URL))
+                .setHeader("User-Agent", "Java 11 Http bot")
+                .build();
+
+        // Act
+        HttpResponse<Void> response = httpClient.send(get, HttpResponse.BodyHandlers.discarding());
+        String xRateLimit = response.headers().firstValue("X-Ratelimit-Limit").get();
+        Assertions.assertEquals(60, Integer.parseInt(xRateLimit));
+
+    }
+
+
 }
