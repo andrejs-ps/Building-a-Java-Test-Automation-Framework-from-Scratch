@@ -3,8 +3,9 @@ package framework.uitests;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
-import static com.testframework.StringUtils.*;
+
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static test.framework.StringUtils.generateRandomString;
 
 public class SignInTests extends BaseTestClass {
 

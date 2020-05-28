@@ -1,7 +1,7 @@
 package framework.uitests;
 
-import com.testframework.StringUtils;
 import org.junit.jupiter.api.Test;
+import test.framework.StringUtils;
 
 public class AnotherUITest extends BaseTestClass {
 

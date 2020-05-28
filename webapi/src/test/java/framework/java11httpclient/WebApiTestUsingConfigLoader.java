@@ -1,7 +1,7 @@
 package framework.java11httpclient;
 
-import com.testframework.PropertiesUtils;
 import org.junit.jupiter.api.Test;
+import test.framework.PropertiesUtils;
 
 public class WebApiTestUsingConfigLoader {
 
