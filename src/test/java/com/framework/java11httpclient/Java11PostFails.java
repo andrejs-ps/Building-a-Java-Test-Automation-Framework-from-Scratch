@@ -1,5 +1,7 @@
 package com.framework.java11httpclient;
 
+import com.testframework.entities.FailedAuthentication;
+import com.testframework.handlers.JsonBodyHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -34,5 +36,25 @@ public class Java11PostFails {
 
         // Assert
         assertEquals(401, actualCode);
+    }
+
+    @Test
+    void postFailsContainsMessage() throws IOException, InterruptedException {
+
+        // Arrange - create client
+        HttpClient httpClient = newBuilder().build();
+
+        // Arrange - create request
+        HttpRequest get = HttpRequest.newBuilder(URI.create(BASE_URL + "user/repos"))
+                .POST(HttpRequest.BodyPublishers.noBody())
+                .build();
+
+
+
+        HttpResponse<FailedAuthentication> response = httpClient.send(get, JsonBodyHandler.jsonBodyHandler(FailedAuthentication.class));
+
+        String actualMessage = response.body().getMessage();
+
+        Assertions.assertEquals("Requires authentication", actualMessage);
     }
 }
