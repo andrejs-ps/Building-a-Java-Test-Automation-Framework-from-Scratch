@@ -1,8 +1,10 @@
 package com.framework.uitests;
 
+import com.testframework.StringUtils;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 
+import static com.testframework.StringUtils.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class SignInTests extends BaseTestClass {
