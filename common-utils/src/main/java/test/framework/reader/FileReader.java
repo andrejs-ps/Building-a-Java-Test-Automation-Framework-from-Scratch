@@ -18,6 +18,8 @@ public class FileReader {
             e.printStackTrace();
         }
 
+        // note: a much safer alternative is to return Optional<>, and not null
+        // see courses: "Working with Nulls in Java" and "Defensive Coding in Java"
         return null;
     }
 

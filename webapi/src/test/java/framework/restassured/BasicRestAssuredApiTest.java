@@ -8,26 +8,12 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class BasicRestAssuredApiTest {
 
-
-
-
-
     @Test
     public void getStatusCodeIs200() {
         RestAssured.get("https://api.github.com")
                 .then()
                 .statusCode(200);
     }
-
-
-
-
-
-
-
-
-
-
 
 
     @Test
@@ -41,13 +27,6 @@ public class BasicRestAssuredApiTest {
     }
 
 
-
-
-
-
-
-
-
     @Test
     public void bodyContainsCorrectValues() {
 
@@ -57,19 +36,6 @@ public class BasicRestAssuredApiTest {
                 .body("login", equalTo("andrejs-ps"))
                 .body("type", equalTo("User"));
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     @Test
     public void postFails() {

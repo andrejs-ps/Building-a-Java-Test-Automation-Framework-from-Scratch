@@ -14,6 +14,4 @@ public class WebApiTestUsingConfigLoader {
 
         // use the URL to make requests
     }
-
-
 }
