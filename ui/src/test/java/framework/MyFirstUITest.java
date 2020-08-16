@@ -80,7 +80,8 @@ public class MyFirstUITest {
         List<WebElement> repos = driver.findElements(By.xpath("//div[@id='user-repositories-list']//li"));
 
         // Assert
-        Assertions.assertEquals(6, repos.size());
+        // expected number of repos will change over time
+        Assertions.assertEquals(7, repos.size());
         driver.close();
     }
 }

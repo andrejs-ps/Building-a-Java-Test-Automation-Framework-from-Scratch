@@ -71,6 +71,7 @@ public class MyFirstUITestRefactored {
         List<WebElement> repos = driver.findElements(By.xpath("//div[@id='user-repositories-list']//li"));
 
         // Assert
-        assertEquals(6, repos.size());
+        // expected number of repos will change over time
+        assertEquals(7, repos.size());
     }
 }
