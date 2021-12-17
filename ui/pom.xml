@@ -11,5 +11,11 @@
 
     <artifactId>ui</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.testautomation</groupId>
+            <artifactId>common-utils</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
