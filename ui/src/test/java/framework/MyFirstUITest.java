@@ -7,9 +7,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.TimeoutException;
 
 public class MyFirstUITest {
 
@@ -55,7 +61,7 @@ public class MyFirstUITest {
         WebElement repoLink = driver.findElement(By.linkText(repo));
 
         repoLink.click();
-
+        waitForTitle(driver, repo);
         String actualUrl = driver.getCurrentUrl();
 
 
@@ -63,6 +69,18 @@ public class MyFirstUITest {
         Assertions.assertEquals("https://github.com/" + "andrejs-ps/" + repo, actualUrl);
 
         driver.close();
+    }
+
+    // Fixes a potential race condition if the next page doesn't load before "getCurrentUrl()" is invoked
+    private static void waitForTitle(WebDriver driver, String title) {
+        // ideally, this should be in a global config, not in a method
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(1));
+
+        // assuming that if the HTML title becomes visible, so is the URL of the page
+        // throws if condition is not met
+        wait.until(ExpectedConditions.titleContains(title));
     }
 
     @Test
